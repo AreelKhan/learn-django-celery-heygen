@@ -4,6 +4,15 @@ from django.contrib.auth import login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
+from videos.models import Video
+
+def home(request):
+    if request.user.is_authenticated:
+        videos = Video.objects.filter(user_id=request.user)
+    else:
+        videos = []
+
+    return render(request, 'accounts/home.html', {'videos': videos})
 
 def register(request):
     if request.method == 'POST':
@@ -15,9 +24,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
-
-def home(request):
-    return render(request, 'accounts/home.html')
 
 def login_view(request):
     if request.method == 'POST':
