@@ -11,3 +11,6 @@ def videos_home(request):
 
     return render(request, 'videos/videos_home.html', {'videos': videos})
 
+
+def generate_video(request):
+    return render(request, 'videos/generate_video.html')
