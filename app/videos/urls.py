@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import generate_video
+from .views import videos_home
 
 urlpatterns = [
-    path('generate/', generate_video, name='generate_video'),
+    path('', videos_home, name='videos_home'),
 ]
-

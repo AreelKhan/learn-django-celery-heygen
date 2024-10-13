@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "accounts/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+{% block title %}Home{% endblock %}
 
+{% block content %}
 <body>
-    <h1>Welcome to the Home Page</h1>
     {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Logout</a>
-
         <h2>Your Videos</h2>
         <div class="video-list">
             {% for video in videos %}
@@ -24,10 +17,6 @@
                 <p>You have not generated any videos yet.</p>
             {% endfor %}
         </div>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
     {% endif %}
 </body>
-
-</html>
+{% endblock %}
